@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: devops-ready-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: devops-ready-api-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: devops-ready-api-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: devops-ready-api-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: devops-ready-api-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: devops-ready-api-db
+          property: password
+
+databases:
+  - name: devops-ready-api-db
+    plan: free
